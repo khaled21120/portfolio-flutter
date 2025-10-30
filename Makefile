@@ -1,8 +1,8 @@
 # Makefile for deploying Flutter web app to GitHub Pages
 
 # CONFIG
-BASE_HREF = '/'
-GITHUB_REPO = git@github.com:khaled21120/khaled21120.github.io.git
+BASE_HREF = '/portfolio-flutter/'
+GITHUB_REPO = https://github.com/khaled21120/portfolio-flutter.git
 BUILD_VERSION := $(shell grep 'version:' pubspec.yaml | awk '{print $$2}')
 
 deploy-web:
@@ -27,4 +27,5 @@ deploy-web:
 	cd ../..
 	@echo "✅ Deployed to GitHub Pages successfully!"
 
-.PHONY: deploy-web
+.PHONY: 
+
