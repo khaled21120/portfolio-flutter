@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -11,7 +12,7 @@ import 'core/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: kIsWeb ? 'assets/.env.web' : '.env');
   await PrefsService.init();
   await SupabaseService.initialize();
   final themeCubit = ThemeCubit();
