@@ -12,9 +12,10 @@ import 'core/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
-  await dotenv.load(fileName: kIsWeb ? 'assets/.env.web' : '.env');
+  await dotenv.load(fileName: kIsWeb ? 'assets/env/env_web.env' : '.env');
   await PrefsService.init();
   await SupabaseService.initialize();
+
   final themeCubit = ThemeCubit();
   await themeCubit.loadTheme();
 
@@ -27,8 +28,10 @@ class PortfolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (__, constraints) {
+      builder: (_, constraints) {
         final designSize = _getDesignSize(constraints.maxWidth);
+        final textScale = _getTextScale(constraints.maxWidth);
+
         return ScreenUtilInit(
           designSize: designSize,
           minTextAdapt: true,
@@ -37,11 +40,21 @@ class PortfolioApp extends StatelessWidget {
             return BlocBuilder<ThemeCubit, ThemeState>(
               builder: (context, state) {
                 return MaterialApp(
-                  home: child,
                   debugShowCheckedModeBanner: false,
                   theme: AppTheme.light,
                   darkTheme: AppTheme.dark,
                   themeMode: state.themeMode,
+                  home: MediaQuery(
+                    data: MediaQuery.of(
+                      context,
+                    ).copyWith(textScaler: TextScaler.linear(textScale)),
+                    child: Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 1300),
+                        child: child ?? const SplashView(),
+                      ),
+                    ),
+                  ),
                 );
               },
             );
@@ -54,11 +67,24 @@ class PortfolioApp extends StatelessWidget {
 
   Size _getDesignSize(double screenWidth) {
     if (screenWidth < 600) {
+      // 📱 Mobile
       return const Size(390, 844);
-    } else if (screenWidth < 1200) {
-      return const Size(834, 1112);
+    } else if (screenWidth < 1100) {
+      // 💻 Tablet / small laptop
+      return const Size(1024, 768);
     } else {
+      // 🖥️ Desktop
       return const Size(1440, 1024);
+    }
+  }
+
+  double _getTextScale(double width) {
+    if (width < 600) {
+      return 1.0;
+    } else if (width < 1100) {
+      return 1.05;
+    } else {
+      return 1.1;
     }
   }
 }

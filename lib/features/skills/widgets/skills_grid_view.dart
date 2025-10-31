@@ -25,7 +25,7 @@ class SkillsGridView extends StatelessWidget {
         skillsLoaded: (skills) => Column(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 22.w),
+              padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 15.w),
               decoration: BoxDecoration(
                 color: context.colorScheme.surface,
                 borderRadius: BorderRadius.circular(12.r),
@@ -66,8 +66,8 @@ class SkillsGridView extends StatelessWidget {
             30.height,
             Wrap(
               alignment: WrapAlignment.start,
-              spacing: 10,
-              runSpacing: 10,
+              spacing: 20.w,
+              runSpacing: 20.w,
               children: skills.map((skill) {
                 return ConstrainedBox(
                   constraints: const BoxConstraints(

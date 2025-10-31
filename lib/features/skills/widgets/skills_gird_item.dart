@@ -79,7 +79,6 @@ class _SkillsGirdItemState extends State<SkillsGirdItem>
 
   Widget _buildSkillCard(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(8.w),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: context.colorScheme.surface,

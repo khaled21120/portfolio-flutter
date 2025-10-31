@@ -27,7 +27,7 @@ class CertificationsTimeline extends StatelessWidget {
           ),
         ),
         certificationsLoaded: (certifications) => Padding(
-          padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 24.w),
+          padding: EdgeInsets.only(top: 40.h, bottom: 40.h, right: 24.w),
           child: Timeline.tileBuilder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

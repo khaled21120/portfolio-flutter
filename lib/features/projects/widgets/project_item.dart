@@ -31,7 +31,6 @@ class _ProjectItemState extends State<ProjectItem> {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
           transform: Matrix4.identity()..scale(_isHovered ? 1.02 : 1.0),
-          margin: EdgeInsets.all(8.w),
           decoration: BoxDecoration(
             color: context.colorScheme.surface,
             borderRadius: BorderRadius.circular(16.r),
@@ -78,7 +77,7 @@ class _ProjectItemState extends State<ProjectItem> {
               // Project Name
               _buildProjectName(context),
 
-              8.height,
+              10.height,
 
               // Description
               Text(
@@ -92,12 +91,12 @@ class _ProjectItemState extends State<ProjectItem> {
                 overflow: TextOverflow.ellipsis,
               ),
 
-              12.height,
+              20.height,
 
               // Technologies
               _buildTechnologiesChips(context),
 
-              16.height,
+              20.height,
 
               // Action Buttons
               _buildActionButtons(context),
@@ -139,7 +138,7 @@ class _ProjectItemState extends State<ProjectItem> {
         topRight: Radius.circular(16.r),
       ),
       child: Container(
-        height: 140.h,
+        height: 200.h,
         width: double.infinity,
         decoration: BoxDecoration(
           border: BoxBorder.fromLTRB(
@@ -151,7 +150,7 @@ class _ProjectItemState extends State<ProjectItem> {
           gradient: LinearGradient(
             colors: [
               context.colorScheme.primary.withValues(alpha: 0.1),
-              context.colorScheme.primaryContainer.withValues(alpha: 0.2),
+              context.colorScheme.primary.withValues(alpha: 0.4),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -164,7 +163,7 @@ class _ProjectItemState extends State<ProjectItem> {
               Center(
                 child: CachedNetworkImage(
                   imageUrl: widget.project!.imageUrl!,
-                  width: 60.w,
+                  width: 100.w,
                   placeholder: (context, url) =>
                       _buildImagePlaceholder(context),
                   errorWidget: (context, url, error) =>
@@ -180,15 +179,36 @@ class _ProjectItemState extends State<ProjectItem> {
     );
   }
 
-  Widget _buildTechnologiesChips(BuildContext context) {
+  Widget _buildTechnologiesChips(BuildContext context, {bool showAll = false}) {
     final technologies = widget.project?.technologies ?? [];
+    final int maxVisible = 10;
+
+    final displayedTechnologies = showAll
+        ? technologies
+        : technologies.take(maxVisible).toList();
+
+    final hasMore = technologies.length > maxVisible;
 
     return Wrap(
       spacing: 10.w,
       runSpacing: 10.h,
-      children: technologies
-          .map((tech) => _buildTechChip(context, tech))
-          .toList(),
+      children: [
+        ...displayedTechnologies.map((tech) => _buildTechChip(context, tech)),
+        if (!showAll && hasMore)
+          Chip(
+            label: Text(
+              '+${technologies.length - maxVisible} more',
+              style: TextStyle(
+                color: context.colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            backgroundColor: context.colorScheme.surface,
+            side: BorderSide(
+              color: context.colorScheme.primary.withValues(alpha: 0.4),
+            )
+          ),
+      ],
     );
   }
 
@@ -215,7 +235,7 @@ class _ProjectItemState extends State<ProjectItem> {
           Flexible(
             child: Text(
               technology,
-              style: AppTextStyles.headingSmall(context).copyWith(
+              style: AppTextStyles.body(context).copyWith(
                 color: context.colorScheme.primary,
                 fontWeight: FontWeight.w500,
               ),
@@ -427,7 +447,7 @@ class _ProjectItemState extends State<ProjectItem> {
         20.height,
 
         // Technologies
-        _buildTechnologiesChips(context),
+        _buildTechnologiesChips(context, showAll: true),
 
         20.height,
 

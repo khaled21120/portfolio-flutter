@@ -30,8 +30,8 @@ It showcases my projects, skills, and experience as a **Flutter Developer**.
 ## 📬 Contact Me
 
 - 📧 **Email:** [wwehor@gmail.com](mailto:wwehor@gmail.com)
-- 💼 **LinkedIn:** [Your LinkedIn Profile](https://www.linkedin.com/in/khaled-gamal-k/)
-- 🐙 **GitHub:** [Your GitHub Profile](https://github.com/khaled21120/)
+- 💼 **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/khaled-gamal-k/)
+- 🐙 **GitHub:** [GitHub](https://github.com/khaled21120/)
 
 ---
 

@@ -89,9 +89,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         _buildNavButton(context, 'Contact', onContactTap),
         SizedBox(width: 24.w),
         const ThemeSwitcher(),
-        SizedBox(width: 16.w),
+        SizedBox(width: 15.w),
         _buildAuthButton(context, isLoggedIn, false),
-        SizedBox(width: 32.w),
+        SizedBox(width: 15.w),
       ],
     );
   }
@@ -119,7 +119,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             title,
             style: AppTextStyles.body(
               context,
-            ).copyWith(fontWeight: FontWeight.w500, fontSize: 15.sp),
+            ).copyWith(fontWeight: FontWeight.w500, fontSize: 13.sp),
           ),
         ),
       ),
@@ -138,10 +138,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           backgroundColor: context.colorScheme.primary,
-          foregroundColor: context.colorScheme.onPrimary,
           padding: EdgeInsets.symmetric(
             horizontal: isMobile ? 16.w : 20.w,
-            vertical: 8.h,
+            vertical: 10.h,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),
@@ -152,8 +151,8 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           isLoggedIn ? 'Logout' : 'Login',
           style: AppTextStyles.body(context).copyWith(
             fontWeight: FontWeight.w600,
-            fontSize: 14.sp,
-            color: context.colorScheme.onPrimary,
+            fontSize: 13.sp,
+            color: Colors.white,
           ),
         ),
       ),
