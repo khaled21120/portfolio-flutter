@@ -66,13 +66,13 @@ class SkillsGridView extends StatelessWidget {
             30.height,
             Wrap(
               alignment: WrapAlignment.start,
-              spacing: 20.w,
-              runSpacing: 20.w,
+              spacing: 20,
+              runSpacing: 20,
               children: skills.map((skill) {
                 return ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 200,
-                    minWidth: 160,
+                  constraints:  BoxConstraints(
+                    maxWidth: context.isMobile ? context.width * .4 : 200,
+                    minWidth: context.isMobile ? context.width * .4 : 200,
                     minHeight: 200,
                   ),
                   child: SkillsGirdItem(skill: skill),

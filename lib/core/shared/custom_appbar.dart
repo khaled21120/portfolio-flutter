@@ -62,8 +62,6 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         const ThemeSwitcher(),
         SizedBox(width: 12.w),
-        _buildAuthButton(context, isLoggedIn, true),
-        SizedBox(width: 16.w),
       ],
     );
   }
@@ -90,8 +88,6 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         SizedBox(width: 24.w),
         const ThemeSwitcher(),
         SizedBox(width: 15.w),
-        _buildAuthButton(context, isLoggedIn, false),
-        SizedBox(width: 15.w),
       ],
     );
   }
@@ -117,42 +113,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           ),
           child: Text(
             title,
-            style: AppTextStyles.body(
+            style: AppTextStyles.bodySmall(
               context,
-            ).copyWith(fontWeight: FontWeight.w500, fontSize: 13.sp),
-          ),
-        ),
-      ),
-    );
-  }
-
-  // 🔐 Auth Button
-  Widget _buildAuthButton(
-    BuildContext context,
-    bool isLoggedIn,
-    bool isMobile,
-  ) {
-    return SizedBox(
-      height: 36.h,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          elevation: 0,
-          backgroundColor: context.colorScheme.primary,
-          padding: EdgeInsets.symmetric(
-            horizontal: isMobile ? 16.w : 20.w,
-            vertical: 10.h,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.r),
-          ),
-        ),
-        onPressed: () {},
-        child: Text(
-          isLoggedIn ? 'Logout' : 'Login',
-          style: AppTextStyles.body(context).copyWith(
-            fontWeight: FontWeight.w600,
-            fontSize: 13.sp,
-            color: Colors.white,
+            ).copyWith(fontWeight: FontWeight.w500),
           ),
         ),
       ),

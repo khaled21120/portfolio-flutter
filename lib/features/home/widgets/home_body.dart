@@ -38,7 +38,7 @@ class PersonalDetails extends StatelessWidget {
 
         // Name with enhanced typewriter effect
         AnimatedTextKit(
-          isRepeatingAnimation: false,
+          pause: const Duration(milliseconds: 500),
           animatedTexts: [
             TypewriterAnimatedText(
               user?.name ?? 'Your Name',
@@ -46,7 +46,7 @@ class PersonalDetails extends StatelessWidget {
                 context,
               ).copyWith(color: context.colorScheme.primary, fontSize: 40),
 
-              speed: const Duration(milliseconds: 100),
+              speed: const Duration(milliseconds: 300),
               curve: Curves.easeOutCubic,
             ),
           ],

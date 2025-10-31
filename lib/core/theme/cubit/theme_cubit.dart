@@ -16,7 +16,7 @@ class ThemeCubit extends Cubit<ThemeState> {
     if (themeString == 'dark') {
       emit(const ThemeState(themeMode: ThemeMode.dark));
     } else {
-      emit(const ThemeState(themeMode: ThemeMode.system));
+      emit(const ThemeState(themeMode: ThemeMode.light));
     }
   }
 
